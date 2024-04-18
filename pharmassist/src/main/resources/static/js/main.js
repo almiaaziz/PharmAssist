@@ -96,3 +96,23 @@
     
 })(jQuery);
 
+//Navbar
+function activateLink(event, section) {
+    // Prevent default link behavior
+    event.preventDefault();
+
+    // Remove 'active' class from all links
+    let links = document.querySelectorAll('.nav-item.nav-link');
+    links.forEach(function(link) {
+        link.classList.remove('active');
+    });
+
+    // Add 'active' class to the clicked link
+    event.target.classList.add('active');
+
+    // Scroll to the section if necessary (optional)
+    if (section !== 'home') {
+        let targetSection = document.getElementById(section);
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+    }
+}
