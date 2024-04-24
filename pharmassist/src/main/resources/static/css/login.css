@@ -86,13 +86,11 @@ span {
 	font-size: 12px;
 }
 
-a {
-	color: #333;
-	font-size: 14px;
+a{
+	display: block;
+	width: 100%;
 	text-decoration: none;
-	margin: 15px 0;
 }
-
 button {
 	border-radius: 20px;
 	border: 1px solid var(--primary);
@@ -126,7 +124,7 @@ button.ghost:hover {
 	background-color: var(--primary);
 }
 
-form {
+form, .RegisterButtons{
 	background-color: #FFFFFF;
 	display: flex;
 	align-items: center;
@@ -141,7 +139,7 @@ input {
 	background-color: #eee;
 	border: none;
 	padding: 12px 15px;
-	margin: 8px 0;
+	margin: 5px 0;
 	width: 100%;
     transition: border-color 0.3s ease;
 }

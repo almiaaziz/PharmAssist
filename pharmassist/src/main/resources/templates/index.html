@@ -13,14 +13,8 @@
 </head>
 
 <body>
-    <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-    <!-- Spinner End -->
-
+    
+    <th:block th:insert="~{fragments/template::spinner}"></th:block>
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
@@ -38,6 +32,13 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="" class="nav-item nav-link active" onclick="activateLink(event, 'home')">Home</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Browse</a>
+                    <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                        <a href="/browse-pharmacies" class="dropdown-item" target="_blank">Pharmacies</a>
+                        <a href="/browse-mp" class="dropdown-item" target="_blank">Medical Products</a>
+                    </div>
+                </div>
                 <a href="#mission" class="nav-item nav-link" onclick="activateLink(event, 'mission')">Mission</a>
                 <a href="#services" class="nav-item nav-link" onclick="activateLink(event, 'services')">Services</a>
                 <a href="#team" class="nav-item nav-link" onclick="activateLink(event, 'team')">Team</a>
@@ -387,7 +388,7 @@
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <a href="#" class=" btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
 
 
     <!-- JavaScript Libraries -->

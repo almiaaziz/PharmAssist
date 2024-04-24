@@ -24,7 +24,9 @@
     bottom: 45px;
     z-index: 99;
 }
-
+.back-to-top:hover{
+    background-color: var(--dark);
+}
 
 /*** Customizable scrollbar ***/
 ::-webkit-scrollbar {
