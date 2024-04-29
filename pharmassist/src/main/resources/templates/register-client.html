@@ -15,18 +15,17 @@
     <th:block th:insert="~{fragments/template::spinner}"></th:block>
     
     <div class="container" id="container">
-
         <div class="form-container sign-in-container" style="max-height: 100%;">
-            <form action="#">
+            <form th:action="@{/register-client}" method="post" th:object="${client}">
                 <br>
                 <h5>Client's info</h5>
-                <input type="text" placeholder="First name" />
-                <input type="text" placeholder="Last name" />
-                <input type="text" placeholder="Username" />
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
+                <input type="text" placeholder="First name" th:field="*{firstName}" required />
+                <input type="text" placeholder="Last name" th:field="*{lastName}" required />
+                <input type="text" placeholder="Username" th:field="*{username}" required />
+                <input type="email" placeholder="Email" th:field="*{email}" required />
+                <input type="password" placeholder="Password" th:field="*{password}" required />
                 <br>
-                <button>Sign Up</button>
+                <button type="submit">Sign Up</button>
             </form>
         </div>
         <div class="overlay-container">
