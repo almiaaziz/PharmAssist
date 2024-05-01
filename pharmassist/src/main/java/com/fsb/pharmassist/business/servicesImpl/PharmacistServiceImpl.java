@@ -7,7 +7,11 @@ import com.fsb.pharmassist.business.services.PharmacistService;
 import com.fsb.pharmassist.dao.entities.Pharmacist;
 import com.fsb.pharmassist.dao.entities.Pharmacy;
 import com.fsb.pharmassist.dao.repositories.PharmacistRepository;
+import com.fsb.pharmassist.dao.repositories.PharmacyRepository;
 import com.fsb.pharmassist.web.dto.PharmacistRegistrationDto;
+import com.fsb.pharmassist.web.dto.PharmacyRegistrationDto;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class PharmacistServiceImpl implements PharmacistService {
@@ -15,20 +19,23 @@ public class PharmacistServiceImpl implements PharmacistService {
     @Autowired
     private PharmacistRepository pharmacistRepository;
 
+    @Autowired
+    private PharmacyRepository pharmacyRepository;
+
     @Override
-    public Pharmacist save(PharmacistRegistrationDto pharmacistDto) {
-        // 1. Create Pharmacist object
-        Pharmacist pharmacist = new Pharmacist();
-        pharmacist.setFirstName(pharmacistDto.getFirstName());
-        pharmacist.setLastName(pharmacistDto.getLastName());
-        pharmacist.setUsername(pharmacistDto.getUsername());
-        pharmacist.setEmail(pharmacistDto.getEmail());
-        pharmacist.setPassword(pharmacistDto.getPassword());
+    @Transactional
+    public void savePharmacist(PharmacistRegistrationDto registrationDto) {
 
-        // 2. Set pharmacy on Pharmacist (assuming OneToMany relationship)
-        pharmacist.setPharmacy(pharmacistDto.getPharmacy());
+        Pharmacy pharmacy = new Pharmacy(registrationDto.getPharmacyName(), registrationDto.getCity(),
+                registrationDto.getZipCode(),
+                registrationDto.getLatitude(), registrationDto.getLongitude());
 
-        // 3. Save Pharmacist (cascades to Pharmacy save)
-        return pharmacistRepository.save(pharmacist);
+        Pharmacist pharmacist = new Pharmacist(registrationDto.getFirstName(), registrationDto.getLastName(),
+                registrationDto.getUsername(),
+                registrationDto.getEmail(), registrationDto.getPassword());
+
+        pharmacy.setPharmacist(pharmacist);
+        pharmacyRepository.save(pharmacy);
+        pharmacistRepository.save(pharmacist);
     }
 }

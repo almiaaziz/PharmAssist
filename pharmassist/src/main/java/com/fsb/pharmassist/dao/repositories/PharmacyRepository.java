@@ -1,9 +1,10 @@
 package com.fsb.pharmassist.dao.repositories;
 
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.fsb.pharmassist.dao.entities.Pharmacist;
+import com.fsb.pharmassist.dao.entities.Pharmacy;
 
 @Repository
-public interface PharmacistRepository extends JpaRepository<Pharmacist, Long> {
+public interface PharmacyRepository extends JpaRepository<Pharmacy, Long> {
 }

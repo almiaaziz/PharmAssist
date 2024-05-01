@@ -1,5 +1,10 @@
 package com.fsb.pharmassist.dao.entities;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+import com.fsb.pharmassist.web.dto.PharmacyRegistrationDto;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,16 +31,16 @@ public class Pharmacist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 30, nullable = false)
+    @Column(name = "first_name", length = 30, nullable = false)
     private String firstName;
 
-    @Column(length = 30, nullable = false)
+    @Column(name = "last_name", length = 30, nullable = false)
     private String lastName;
 
     @Column(length = 30, nullable = false)
     private String username;
 
-    @Column(length = 30, nullable = false)
+    @Column(unique = true)
     private String email;
 
     @Column(length = 30, nullable = false)
@@ -43,5 +48,25 @@ public class Pharmacist {
 
     @ManyToOne
     @JoinColumn(name = "pharmacy_id")
+    @Cascade(CascadeType.PERSIST)
     private Pharmacy pharmacy;
+
+    public Pharmacist(String firstName2, String lastName2, String username2, String email2, String password2,
+            Pharmacy pharmacy) {
+        this.firstName = firstName2;
+        this.lastName = lastName2;
+        this.username = username2;
+        this.email = email2;
+        this.password = password2;
+        this.pharmacy = pharmacy;
+    }
+
+    public Pharmacist(String firstName2, String lastName2, String username2, String email2, String password2) {
+        this.firstName = firstName2;
+        this.lastName = lastName2;
+        this.username = username2;
+        this.email = email2;
+        this.password = password2;
+    }
+
 }

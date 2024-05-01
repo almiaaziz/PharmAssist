@@ -27,7 +27,7 @@ public class ClientRegistrationController {
     }
 
     @PostMapping
-    public String registerClientAccount(@ModelAttribute("Client") ClientRegistrationDto registrationDto,
+    public String registerClientAccount(@ModelAttribute("client") ClientRegistrationDto registrationDto,
             RedirectAttributes redirectAttributes) {
         clientService.save(registrationDto);
         redirectAttributes.addFlashAttribute("successMessage", "You've successfully registered!");
