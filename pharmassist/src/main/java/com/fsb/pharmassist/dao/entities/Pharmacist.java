@@ -2,9 +2,6 @@ package com.fsb.pharmassist.dao.entities;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-
-import com.fsb.pharmassist.web.dto.PharmacyRegistrationDto;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

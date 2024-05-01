@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.fsb.pharmassist.dao.entities.Client;
-import com.fsb.pharmassist.dao.entities.Pharmacist;
 import com.fsb.pharmassist.web.dto.PharmacistRegistrationDto;
 
 @Controller

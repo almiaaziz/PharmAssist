@@ -9,7 +9,6 @@ import com.fsb.pharmassist.dao.entities.Pharmacy;
 import com.fsb.pharmassist.dao.repositories.PharmacistRepository;
 import com.fsb.pharmassist.dao.repositories.PharmacyRepository;
 import com.fsb.pharmassist.web.dto.PharmacistRegistrationDto;
-import com.fsb.pharmassist.web.dto.PharmacyRegistrationDto;
 
 import jakarta.transaction.Transactional;
 
