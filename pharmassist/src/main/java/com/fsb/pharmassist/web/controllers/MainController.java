@@ -16,10 +16,12 @@ public class MainController {
         return "browse-pharmacies";
     }
 
-    @GetMapping("/browse-mp")
-    public String showMedicalProductsPage() {
-        return "browse-mp";
-    }
+    /*
+     * @GetMapping("/browse-mp")
+     * public String showMedicalProductsPage() {
+     * return "browse-mp";
+     * }
+     */
 
     @GetMapping("/404")
     public String showErrorPage() {

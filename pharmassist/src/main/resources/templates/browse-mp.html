@@ -1,11 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical products</title>
+    <meta charset="utf-8">
+    <title>Medical-Products</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Liens partagés -->
+    <link th:replace="~{/fragments/template::link}" rel="stylesheet">
 </head>
+
 <body>
     
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+        <a href="/" class="navbar-brand d-flex px-4 px-lg-5">
+            <div style="display: flex; align-items: center;">
+                <img th:src="@{img/Logo.png}" alt="Logo" style="max-width: 70px; max-height: 70px;">
+                <h1 class="m-0 text-primary">PharmAssist</h1> <!-- Correction: Simplification -->
+            </div>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="/" class="nav-item nav-link active">Home</a> <!-- Correction: Chemin correct -->
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Browse</a>
+                    <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                        <a href="/browse-pharmacies" class="dropdown-item">Pharmacies</a>
+                        <a href="/browse-mp" class="dropdown-item">Medical Products</a>
+                    </div>
+                </div>
+                <a href="#mission" class="nav-item nav-link">Mission</a>
+                <a href="#services" class="nav-item nav-link">Services</a>
+                <a href="#team" class="nav-item nav-link">Team</a>
+                <a href="#contact" class="nav-item nav-link">Contact</a>
+            </div>
+            <a href="/login" class="login btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">LOGIN</a>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- Section de Recherche -->
+    <div class="search-form">
+        <div class="container">
+            <form id="medicineSearchForm" action="#" method="post" onsubmit="searchMedicines(event)"> <!-- Correction: Formulaire avec JS -->
+                <input type="text" name="searchQuery" class="form-control" placeholder="Search for medicines...">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Section de Contenu -->
+    <div class="site-section">
+        <div class="container">
+            <div class="row">
+                <!-- Exemple de Produit -->
+                <div class="col-sm-6 col-lg-4 text-center item mb-4">
+                    <a th:href="@{'/medicine-details/' + ${medicine.id}}"> <!-- Correction: Chemin correct -->
+                        <img th:src="${medicine.imageUrl}" alt="Image du médicament">
+                    </a>
+                    <h3 class="text-dark" th:text="${medicine.name}"></h3>
+                </div>
+
+                <!-- Ajoutez des produits supplémentaires ici -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <!-- Liens de pagination -->
+        <th:block th:if="${medicinesPage.hasPrevious()}">
+            <a th:href="@{'/browse-mp?page=' + ${medicinesPage.previousPageable().getPageNumber()} + '&size=' + ${medicinesPage.previousPageable().getPageSize()}}">Précédent</a>
+        </th:block>
+
+        <span>Page: <span th:text="${medicinesPage.getNumber() + 1}"></span> sur <span th:text="${medicinesPage.getTotalPages()}"></span></span>
+
+        <th:block th:if="${medicinesPage.hasNext()}">
+            <a th:href="@{'/browse-mp?page=' + ${medicinesPage.nextPageable().getPageNumber()} + '&size=' + ${medicinesPage.nextPageable().getPageSize()}}">Suivant</a>
+        </th:block>
+    </div>
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 pt-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="text-light mb-4">Contact</h5>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Faculty of sciences, Bizerte</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@pharmassist.com</p>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="text-light mb-4">Services</h5>
+                    <a class="btn btn-link" href="#servicesUser">Find Medical Products</a>
+                    <a class="btn btn-link" href="#servicesUser">Locate Nearest Pharmacies</a>
+                    <a class="btn btn-link" href="#servicesUser">Scan your medical prescription</a>
+                    <a class="btn btn-link" href="#servicesPharmacist">Efficient Management</a>
+                    <a class="btn btn-link" href="#servicesPharmacist">Promote Your Pharmacy</a>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="text-light mb-4">Quick Links</h5>
+                    <a class="btn btn-link" href="#mission">About Us</a>
+                    <a class="btn btn-link" href="#team">Our Team</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; PharmAssist, All Rights Reserved.
+        </div>
+    </div>
+
+    <!-- Bouton "Back to Top" -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- Liens JavaScript -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/main.js"></script>
+    
+    <!-- Script de Recherche -->
+    <script>
+      function searchMedicines(event) {
+          event.preventDefault(); // Empêcher le rechargement de la page
+
+          const searchQuery = document.querySelector('input[name="searchQuery"]').value;
+
+          if (searchQuery.trim() === "") {
+              alert("Please enter a search term.");
+              return;
+          }
+
+          // Simuler une requête de recherche (remplacer par une véritable requête AJAX)
+          console.log("Searching for medicines with query:", searchQuery);
+      }
+    </script>
+
 </body>
+
 </html>

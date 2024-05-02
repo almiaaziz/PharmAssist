@@ -50,4 +50,9 @@ public class MedicalProduct {
     @Column
     private String poorReview;
 
+    public MedicalProduct orElseThrow(Object object) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'orElseThrow'");
+    }
+
 }
