@@ -14,7 +14,7 @@ import com.fsb.pharmassist.dao.repositories.MedicalProductRepository;
 import com.fsb.pharmassist.dao.entities.MedicalProduct;
 
 @Controller
-public class MedicineController {
+public class MedicalProductController {
     @Autowired
     private MedicalProductRepository medicineRepository;
 
