@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Services</title>
+    <link th:replace="~{/fragments/template::link}" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+        <a href="/" class="navbar-brand d-flex px-4 px-lg-5">
+            <div style="display: flex; align-items: center;">
+                <img th:src="@{img/Logo.png}" alt="Logo" style="max-width: 70px; max-height: 70px;">
+                <h1 class="m-0 text-primary">PharmAssist</h1> <!-- Correction: Simplification -->
+            </div>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="/" class="nav-item nav-link active">Home</a> <!-- Correction: Chemin correct -->
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Browse</a>
+                    <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                        <a href="/browse-pharmacies" class="dropdown-item">Pharmacies</a>
+                        <a href="/browse-mp" class="dropdown-item">Medical Products</a>
+                    </div>
+                </div>
+                <a href="/mission" class="nav-item nav-link">Mission</a>
+                <a href="/services" class="nav-item nav-link">Services</a>
+                <a href="/team" class="nav-item nav-link">Team</a>
+                <a href="/contact" class="nav-item nav-link">Contact</a>
+            </div>
+            <a href="/login" class="login btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">LOGIN</a>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+    
+    <!-- Services Start -->
+    <div class="container-xxl py-5" id="services">
+        <div class="container">
+            <div class="container" id="servicesUser">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <p class="d-inline-block border rounded-pill py-1 px-4">Services</p>
+                    <h1>For USERS</h1>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="service-item bg-light rounded h-100 p-5">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                                <i class="fa fa-solid fa-pills text-primary fs-4"></i>
+                            </div>
+                            <h4 class="mb-3">Find Medical Products</h4>
+                            <p class="mb-4">Explore a vast range of medical products from various pharmacies..</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="service-item bg-light rounded h-100 p-5">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                                <i class="fa fa-map-marker-alt text-primary fs-4"></i>
+                            </div>
+                            <h4 class="mb-3">Locate Nearest Pharmacies</h4>
+                            <p class="mb-4">Quickly locate the nearest pharmacies based on your location.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="service-item bg-light rounded h-100 p-5">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                                <i class="fa fa-camera text-primary fs-4"></i>
+                            </div>
+                            <h4 class="mb-3">Scan your medical prescription</h4>
+                            <p class="mb-4">Easily scan yor prescription and forward it to a pharmacist.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            </br>
+            <div class="container" id="servicesPharmacist">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1>For PHARMACISTS</h1>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="service-item bg-light rounded h-100 p-5">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                                <i class="fa fa-database text-primary fs-4"></i>
+                            </div>
+                            <h4 class="mb-3">Efficient Management</h4>
+                            <p class="mb-4">Manage your pharmacy inventory, orders, and customer information efficiently.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="service-item bg-light rounded h-100 p-5">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                                <i class="fa fa-bullhorn text-primary fs-4"></i>
+                            </div>
+                            <h4 class="mb-3">Promote Your Pharmacy</h4>
+                            <p class="mb-4">Showcase your pharmacy to potential customers and increase your visibility.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="service-item bg-light rounded h-100 p-5">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                                <i class="fa fa-tasks text-primary fs-4"></i>
+                            </div>
+                            <h4 class="mb-3">Streamlined Operations</h4>
+                            <p class="mb-4">Simplify day-to-day operations and enhance customer satisfaction.</p>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-light footer mt-5 pt-5">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-4 col-md-6">
+                <h5 class="text-light mb-4">Contact</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Faculty of sciences, Bizerte</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@pharmassist.com</p>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h5 class="text-light mb-4">Services</h5>
+                <a class="btn btn-link" href="#servicesUser">Find Medical Products</a>
+                <a class="btn btn-link" href="#servicesUser">Locate Nearest Pharmacies</a>
+                <a class="btn btn-link" href="#servicesUser">Scan your medical prescription</a>
+                <a class="btn btn-link" href="#servicesPharmacist">Efficient Management</a>
+                <a class="btn btn-link" href="#servicesPharmacist">Promote Your Pharmacy</a>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h5 class="text-light mb-4">Quick Links</h5>
+                <a class="btn btn-link" href="#mission">About Us</a>
+                <a class="btn btn-link" href="#team">Our Team</a>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        &copy; PharmAssist, All Rights Reserved.
+    </div>
+</div>
+
+<!-- Bouton "Back to Top" -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+<!-- Liens JavaScript -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+</body>
+</html>
