@@ -62,4 +62,11 @@ public class Pharmacy {
         pharmacist.setPharmacy(this);
     }
 
+    public Pharmacy(String name, String latitude, String longitude) {
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    
 }
