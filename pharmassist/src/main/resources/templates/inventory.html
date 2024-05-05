@@ -87,7 +87,10 @@
     <!--  Main wrapper -->
     <div class="body-wrapper">
       <div class="container-fluid">
-        <div class="card">
+        <div th:if="${successMessage}">
+          <div class="alert alert-info" style="text-align: center;" th:text="${successMessage}"></div>
+        </div>
+        <div class="card" style="max-width: 100%;">
           <div class="card-body">
             <div class="mb-3 mb-sm-0">
               <h5 class="card-title fw-semibold">Inventory</h5>
@@ -96,34 +99,30 @@
             <div class="d-flex align-items-center justify-content-center">
               <a href="/add-mp"><button id="addMedicineButton" class="btn btn-dark text-light"> Add Medical Product</button></a>
             </div>
-          
-            <table>
-                <thead>
-                  <tr>
-                    <th>Medicine Name</th>
-                    <th>Medicine ID</th>
-                    <th>Group Name</th>
-                    <th>Stock in Qty</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Augmentin 625 Duo Tablet</td>
-                    <td>D06ID232435454</td>
-                    <td>Generic Medicine</td>
-                    <td>350</td>
-                    <td>View Full Detail >>>></td>
-                  </tr>
-                  <tr>
-                    <td>Azithral 500 Tablet</td>
-                    <td>D06ID232435451</td>
-                    <td>Generic Medicine</td>
-                    <td>20</td>
-                    <td>View Full Detail >>>></td>
-                  </tr>
-                  </tbody>
+            <div style="display: flex;justify-content: center;">
+              <table>
+                  <thead>
+                    <tr>
+                      <th>Medicine Name</th>
+                      <th>Manufacturer</th>
+                      <th>Composition</th>
+                      <th>Uses</th>
+                      <th>Quantity Available</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr th:each="medicine : ${medicines}">
+                      <td th:text="${medicine.medicineName}"></td>
+                      <td th:text="${medicine.manufacturer}"></td>
+                      <td th:text="${medicine.composition}"></td>
+                      <td th:text="${medicine.uses}"></td>
+                      <td th:text="${medicine.quantity}"></td>
+                      <td>UPDATE DELETE</td>
+                    </tr>
+                    </tbody>
               </table>
+            </div>
           </div>
         </div>
       </div>

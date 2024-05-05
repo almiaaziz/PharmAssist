@@ -80,7 +80,7 @@
                 <th:block th:each="medicine : ${foundMedicines}">
                     <div class="col-sm-6 col-lg-3 text-center item mb-4" style="border: 5px solid #3F72AF; padding: 10px; margin-right: 25px;border-radius: 16px;">
                         <a th:href="@{'/medicine-details/' + ${medicine.id}}">
-                            <img th:src="${medicine.imageURL}" alt="Image du médicament" height="300px" width="200px">
+                            <img th:src="${medicine.imageURL}" alt="Medicine Image" height="300px" width="200px">
                             <h5 class="text-dark" th:text="${medicine.medicineName}"></h5>
                         </a>
                     </div>

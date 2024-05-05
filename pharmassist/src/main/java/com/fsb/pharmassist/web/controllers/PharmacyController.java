@@ -21,7 +21,7 @@ public class PharmacyController {
 
     @GetMapping
     public String browsePharmacies(Model model) {
-        List<com.fsb.pharmassist.dao.entities.Pharmacy> pharmacies = pharmacyService.getAllPharmacies(); // Update the type here
+        List<com.fsb.pharmassist.dao.entities.Pharmacy> pharmacies = PharmacyService.getAllPharmacies(); // Update the type here
         model.addAttribute("pharmacies", pharmacies);
         return "browse-pharmacies"; // Thymeleaf template name
     }

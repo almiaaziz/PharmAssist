@@ -50,9 +50,20 @@ public class MedicalProduct {
     @Column
     private String poorReview;
 
+    @Column(nullable = true)
+    private String quantity;
+
     public MedicalProduct orElseThrow(Object object) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'orElseThrow'");
+    }
+
+    public MedicalProduct(String medicineName, String composition, String uses, String manufacturer, String quantity) {
+        this.medicineName = medicineName;
+        this.composition = composition;
+        this.uses = uses;
+        this.manufacturer = manufacturer;
+        this.quantity = quantity;
     }
 
 }

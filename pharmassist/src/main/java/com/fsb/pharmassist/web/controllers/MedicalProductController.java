@@ -9,16 +9,24 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fsb.pharmassist.dao.repositories.MedicalProductRepository;
+import com.fsb.pharmassist.web.dto.MedicalProductRegistrationDto;
+import com.fsb.pharmassist.business.services.MedicalProductService;
 import com.fsb.pharmassist.dao.entities.MedicalProduct;
 
 @Controller
 public class MedicalProductController {
     @Autowired
     private MedicalProductRepository medicalProductRepository;
+
+    @Autowired
+    private MedicalProductService mpService;
 
     @GetMapping("/browse-mp")
     public String listMedicines(
@@ -56,4 +64,19 @@ public class MedicalProductController {
 
         return "search-results"; // Nom de la page de résultats de recherche
     }
+
+    /////////////////////////////
+    @ModelAttribute("medicine")
+    public MedicalProductRegistrationDto mpRegistrationDto() {
+        return new MedicalProductRegistrationDto();
+    }
+
+    @PostMapping("/add-mp")
+    public String registerMP(@ModelAttribute("medicine") MedicalProductRegistrationDto registrationDto,
+            RedirectAttributes redirectAttributes) {
+        mpService.save(registrationDto);
+        redirectAttributes.addFlashAttribute("successMessage", "Medicine added successfully!");
+        return "redirect:/inventory";
+    }
+
 }

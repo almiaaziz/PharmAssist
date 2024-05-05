@@ -89,26 +89,29 @@
       <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Inventory </h5>
-    <h5>Add a medicine</h5>
-    <form >
-      <label for="medicine_name">Medicine Name:</label>
-      <input type="text" name="medicine_name" id="medicine_name" required><br><br>
+            <div class="mb-3 mb-sm-0">
+              <h5 class="card-title fw-semibold">Add Medical Product</h5>
+              <p class="mb-0">Add new medicine to your inventory</p>
+            </div>
+          </div>
+    <form th:action="@{/add-mp}" method="post" th:object="${medicine}">
+      <label for="medicine_name">Medicine Name</label>
+      <input type="text" name="medicine_name" th:field="*{medicineName}" required><br><br>
+      
+      <label for="quantity">Manufacturer</label>
+      <input type="text" name="manufacturer" th:field="*{manufacturer}" required><br><br>
+
+      <label for="medicine_id">Composition</label>
+      <input type="text" name="medicine_id" th:field="*{composition}"><br><br>
   
-      <label for="medicine_id">Medicine ID:</label>
-      <input type="text" name="medicine_id" id="medicine_id" required><br><br>
+      <label for="composition">Uses</label>
+      <textarea name="composition" th:field="*{Uses}" rows="5"></textarea><br><br>
   
-      <label for="composition">Composition:</label>
-      <textarea name="composition" id="composition" rows="5"></textarea><br><br>
-  
-      <label for="quantity">Quantity:</label>
-      <input type="number" name="quantity" id="quantity" required><br><br>
+      <label for="quantity">Quantity</label>
+      <input type="number" name="quantity" th:field="*{quantity}" required><br><br>
   
       <button type="submit">Add Medicine</button>
     </form>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
   <script th:src="@{/lib/dashboard/jquery/dist/jquery.min.js}"></script>

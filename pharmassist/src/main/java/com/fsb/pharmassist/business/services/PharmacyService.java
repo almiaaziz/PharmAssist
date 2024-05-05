@@ -9,11 +9,10 @@ import com.fsb.pharmassist.dao.repositories.PharmacyRepository;
 import java.util.List;
 
 @Service
-public class PharmacyService {
-    @Autowired
-    private PharmacyRepository pharmacyRepository;
+public interface PharmacyService {
+    public static final PharmacyRepository pharmacyRepository = null;
 
-    public List<Pharmacy> getAllPharmacies() {
+    public static List<Pharmacy> getAllPharmacies() {
         return pharmacyRepository.findAll();
     }
 }
