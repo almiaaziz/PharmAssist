@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard</title>
+  <link rel="shortcut icon" type="image/png" th:href="@{/img/Logo.png}" />
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <link rel="stylesheet" th:href="@{/css/dashboard/styles.min.css}" />
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+
+  <!-- Leaflet.draw CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+
+  <style>
+    #map{
+      height: 400px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body style="overflow: hidden;">
+
+  <th:block th:insert="~{fragments/template::spinner}"></th:block>
+
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div class="sidebar">
+        <div style="display: flex;justify-content: center;">
+          <a href="/index" class="text-nowrap logo-img">
+            <img th:src="@{/img/login.png}" width="200px" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="" style="overflow: hidden;">
+          <ul id="sidebarnav">
+            <li class="nav-small-cap active">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Home</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link active" href="/dashboard" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu" style="color: white;">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Management</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/inventory" aria-expanded="false">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu" style="color: white;">Inventory</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/add-mp" aria-expanded="false">
+                <span>
+                  <i class="ti ti-alert-circle"></i>
+                </span>
+                <span class="hide-menu" style="color: white;">Add Medical Product</span>
+              </a>
+            </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">AUTH</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/index" aria-expanded="false">
+                <span>
+                  <i class="ti ti-login"></i>
+                </span>
+                <span class="hide-menu" style="color: white;">Log out</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <div class="container-fluid">
+        <!--  Row 1 -->
+        <div class="row">
+          <div class="col-lg-8 d-flex align-items-strech">
+            <div class="card w-100">
+              <div class="card-body">
+                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                  <div class="mb-3 mb-sm-0">
+                    <h5 class="card-title fw-semibold">Live Location</h5>
+                  </div>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <button onclick="getLocation()" class="btn btn-dark">Get Location</button>
+                  </div>
+                </div>
+                <input type="text" class="form-control" id="location" readonly hidden>
+                <div id="map"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="row">
+              <div class="col-lg-12">
+                <!--Inventory Status tab-->
+                <div class="card overflow-hidden">
+                  <div class="card-body p-4">
+                    <h5 class="card-title mb-9 fw-semibold">Inventory Status</h5>
+                    <div class="row align-items-center">
+                      <div class="col-8">
+                        <h4 class="fw-semibold mb-3">Good!</h4>          
+                        <div class="d-flex align-items-center">
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <!--change status depending on the stock-->
+                        <div class="d-flex justify-content-center">
+                          <div><img th:src="@{/img/dashboard/logos/good.png}" width="60" alt="" /></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <!-- Monthly Earnings -->
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row alig n-items-start">
+                      <div class="col-8">
+                        <h5 class="card-title mb-9 fw-semibold"> Pharmacy's Info </h5>
+                        <h6 class="fw-semibold mb-3">Name</h6>
+                        <div class="d-flex align-items-center pb-1">
+                          <p class="fs-3 mb-0">Pharmacy_name</p>
+                        </div>
+                        <br>
+                        <h6 class="fw-semibold mb-3">Owner</h6>
+                        <div class="d-flex align-items-center pb-1">
+                          <p class="fs-3 mb-0">Owner_name</p>
+                        </div>
+                        <br>
+                        <h6 class="fw-semibold mb-3">City</h6>
+                        <div class="d-flex align-items-center pb-1">
+                          <p class="fs-3 mb-0">city</p>
+                        </div>
+                        <br>
+                        <h6 class="fw-semibold mb-3">Zip Code</h6>
+                        <div class="d-flex align-items-center pb-1">
+                          <p class="fs-3 mb-0">zipCode</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+  <script th:src="@{/lib/dashboard/jquery/dist/jquery.min.js}"></script>
+  <script th:src="@{/lib/dashboard/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/js/dashboard/sidebarmenu.js}"></script>
+  <script th:src="@{/js/dashboard/app.min.js}"></script>
+  <script th:src="@{/lib/dashboard/apexcharts/dist/apexcharts.min.js}"></script>
+  <script th:src="@{/lib/dashboard/simplebar/dist/simplebar.js}"></script>
+
+  <!-- Leaflet JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+
+  <!-- Leaflet.draw JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+
+  <script th:src="@{/js/dashboard/dashboard.js}"></script>
+</body>
+
+</html>

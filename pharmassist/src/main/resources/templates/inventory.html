@@ -1,43 +1,48 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard</title>
-  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/icon.png" />
-  <link rel="stylesheet" href="../assets/css/styles.min.css" />
+  <title>Inventory</title>
+  <link rel="shortcut icon" type="image/png" th:href="@{/img/Logo.png}" />
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <link rel="stylesheet" th:href="@{/css/dashboard/styles.min.css}" />
 </head>
 
 <body>
+
+  <th:block th:insert="~{fragments/template::spinner}"></th:block>
+
+
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
     <!-- Sidebar Start -->
     <aside class="left-sidebar">
       <!-- Sidebar scroll-->
-      <div>
-        <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.html" class="text-nowrap logo-img">
-            <img src="../assets/images/logos/icon.png" width="180" alt="" />
+      <div class="sidebar">
+        <div style="display: flex;justify-content: center;">
+          <a href="/index" class="text-nowrap logo-img">
+            <img th:src="@{/img/login.png}" width="200px" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
           </div>
         </div>
         <!-- Sidebar navigation-->
-        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="" style="overflow: hidden;">
           <ul id="sidebarnav">
-            <li class="nav-small-cap">
+            <li class="nav-small-cap active">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">Home</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./index.html" aria-expanded="false">
+              <a class="sidebar-link" href="/dashboard" aria-expanded="false">
                 <span>
                   <i class="ti ti-layout-dashboard"></i>
                 </span>
-                <span class="hide-menu">Dashboard</span>
+                <span class="hide-menu" style="color: white;">Dashboard</span>
               </a>
             </li>
             <li class="nav-small-cap">
@@ -45,19 +50,19 @@
               <span class="hide-menu">Management</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./Inventory.html" aria-expanded="false">
+              <a class="sidebar-link active" href="/inventory" aria-expanded="false">
                 <span>
                   <i class="ti ti-article"></i>
                 </span>
-                <span class="hide-menu">Inventory</span>
+                <span class="hide-menu" style="color: white;">Inventory</span>
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./Perscriptions.html" aria-expanded="false">
+              <a class="sidebar-link" href="/add-mp" aria-expanded="false">
                 <span>
                   <i class="ti ti-alert-circle"></i>
                 </span>
-                <span class="hide-menu">Prescriptions</span>
+                <span class="hide-menu" style="color: white;">Add Medical Product</span>
               </a>
             </li>
             <li class="nav-small-cap">
@@ -65,16 +70,18 @@
               <span class="hide-menu">AUTH</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./LogOut.html" aria-expanded="false">
+              <a class="sidebar-link" href="/index" aria-expanded="false">
                 <span>
                   <i class="ti ti-login"></i>
                 </span>
-                <span class="hide-menu">Log Out</span>
+                <span class="hide-menu" style="color: white;">Log out</span>
               </a>
             </li>
           </ul>
         </nav>
+        <!-- End Sidebar navigation -->
       </div>
+      <!-- End Sidebar scroll-->
     </aside>
     <!--  Sidebar End -->
     <!--  Main wrapper -->
@@ -82,9 +89,14 @@
       <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Inventory</h5>
-            <p class="mb-0">List of medicines available for sales.  </p>
-            <button id="addMedicineButton" <a href="Addmed.html"> Add Medicine</a></button>
+            <div class="mb-3 mb-sm-0">
+              <h5 class="card-title fw-semibold">Inventory</h5>
+              <p class="mb-0">List of medicines available for sales</p>
+            </div>
+            <div class="d-flex align-items-center justify-content-center">
+              <a href="/add-mp"><button id="addMedicineButton" class="btn btn-dark text-light"> Add Medical Product</button></a>
+            </div>
+          
             <table>
                 <thead>
                   <tr>
@@ -117,11 +129,13 @@
       </div>
     </div>
   </div>
-  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/js/sidebarmenu.js"></script>
-  <script src="../assets/js/app.min.js"></script>
-  <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+  <script th:src="@{/lib/dashboard/jquery/dist/jquery.min.js}"></script>
+  <script th:src="@{/lib/dashboard/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/js/dashboard/sidebarmenu.js}"></script>
+  <script th:src="@{/js/dashboard/app.min.js}"></script>
+  <script th:src="@{/lib/dashboard/apexcharts/dist/apexcharts.min.js}"></script>
+  <script th:src="@{/lib/dashboard/simplebar/dist/simplebar.js}"></script>
+  <script th:src="@{/js/dashboard/inventory.js}"></script>
 </body>
 
 </html>
