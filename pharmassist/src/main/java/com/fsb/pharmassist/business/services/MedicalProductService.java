@@ -9,4 +9,6 @@ public interface MedicalProductService {
     MedicalProduct save(MedicalProductRegistrationDto registrationDto);
 
     List<MedicalProduct> getAllMedicalProducts();
+
+    void deleteMedicalProductById(Long id);
 }

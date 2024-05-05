@@ -18,7 +18,7 @@ import jakarta.transaction.Transactional;
 @Service
 public class PharmacyServiceImpl implements PharmacyService {
 
-    private static PharmacyRepository pharmacyRepository = null;
+    private final PharmacyRepository pharmacyRepository;
 
     @Autowired
     public PharmacyServiceImpl(PharmacyRepository pharmacyRepository) {

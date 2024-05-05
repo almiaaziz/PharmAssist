@@ -79,4 +79,12 @@ public class MedicalProductController {
         return "redirect:/inventory";
     }
 
+    // Delete a medicine
+    @GetMapping("/{id}/delete")
+    public String deleteMedicine(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+        mpService.deleteMedicalProductById(id);
+        redirectAttributes.addFlashAttribute("successMessage", "Medicine deleted successfully!");
+        return "redirect:/inventory";
+    }
+
 }

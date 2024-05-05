@@ -37,4 +37,9 @@ public class MedicalProductServiceImpl implements MedicalProductService {
         // Implementation for static method
         return null;
     }
+
+    @Override
+    public void deleteMedicalProductById(Long id) {
+        mpRepository.deleteById(id);
+    }
 }

@@ -118,7 +118,12 @@
                       <td th:text="${medicine.composition}"></td>
                       <td th:text="${medicine.uses}"></td>
                       <td th:text="${medicine.quantity}"></td>
-                      <td>UPDATE DELETE</td>
+                      <td>
+                        <div>
+                          <a>UPDATE</a>
+                          <a th:href="@{/{id}/delete(id=${medicine.id})}" onclick="return confirm('Are you sure you want to delete this medicine?')">DELETE</a>
+                        </div>
+                      </td>
                     </tr>
                     </tbody>
               </table>

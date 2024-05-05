@@ -10,9 +10,5 @@ import java.util.List;
 
 @Service
 public interface PharmacyService {
-    public static final PharmacyRepository pharmacyRepository = null;
-
-    public static List<Pharmacy> getAllPharmacies() {
-        return pharmacyRepository.findAll();
-    }
+    List<Pharmacy> getAllPharmacies();
 }
