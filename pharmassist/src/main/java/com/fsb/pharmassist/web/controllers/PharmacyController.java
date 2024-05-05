@@ -1,8 +1,7 @@
 package com.fsb.pharmassist.web.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +27,6 @@ public class PharmacyController {
     public String getAllPharmacies(Model model) {
         List<Pharmacy> pharmacies = pharmacyService.getAllPharmacies();
         model.addAttribute("pharmacies", pharmacies);
-        return "browse-pharmacies"; // Assuming "pharmacies.html" is your view template
+        return "browse-pharmacies";
     }
 }
