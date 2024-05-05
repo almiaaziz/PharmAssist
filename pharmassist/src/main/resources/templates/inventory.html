@@ -96,7 +96,13 @@
               <h5 class="card-title fw-semibold">Inventory</h5>
               <p class="mb-0">List of medicines available for sales</p>
             </div>
-            <div class="d-flex align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-between mt-3">
+              <!-- Search box -->
+              <div class="input-group" style="max-width: 400px;">
+                <input type="text" class="form-control" placeholder="Search by Medicine Name" id="searchInput">
+                <button class="btn btn-outline-dark" type="button" id="searchButton">Search</button>
+              </div>
+              <!-- Add Medical Product button -->
               <a href="/add-mp"><button id="addMedicineButton" class="btn btn-dark text-light"> Add Medical Product</button></a>
             </div>
             <div style="display: flex;justify-content: center;">
@@ -140,6 +146,32 @@
   <script th:src="@{/lib/dashboard/apexcharts/dist/apexcharts.min.js}"></script>
   <script th:src="@{/lib/dashboard/simplebar/dist/simplebar.js}"></script>
   <script th:src="@{/js/dashboard/inventory.js}"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the input field and search button
+        var input = document.getElementById("searchInput");
+        var searchButton = document.getElementById("searchButton");
+
+        // Add event listener to the search button
+        searchButton.addEventListener("click", function () {
+            var filter = input.value.toUpperCase();
+            var rows = document.querySelectorAll("tbody tr");
+
+            // Loop through all table rows, and hide those that don't match the search query
+            rows.forEach(function (row) {
+                var name = row.getElementsByTagName("td")[0];
+                if (name) {
+                    var textValue = name.textContent || name.innerText;
+                    if (textValue.toUpperCase().indexOf(filter) > -1) {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = "none";
+                    }
+                }
+            });
+        });
+    });
+  </script>
 </body>
 
 </html>
