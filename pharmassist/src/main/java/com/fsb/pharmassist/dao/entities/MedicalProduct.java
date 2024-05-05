@@ -66,4 +66,20 @@ public class MedicalProduct {
         this.quantity = quantity;
     }
 
+    public MedicalProduct(String medicineName, String composition, String uses, String sideEffects, String imageURL,
+            String manufacturer, String excellentReview, String averageReview, String poorReview, String quantity) {
+        this.medicineName = medicineName;
+        this.composition = composition;
+        this.uses = uses;
+        this.sideEffects = sideEffects;
+        this.imageURL = imageURL;
+        this.manufacturer = manufacturer;
+        this.excellentReview = excellentReview;
+        this.averageReview = averageReview;
+        this.poorReview = poorReview;
+        this.quantity = quantity;
+    }
+
+    
+
 }

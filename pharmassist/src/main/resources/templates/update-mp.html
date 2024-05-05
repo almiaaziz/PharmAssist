@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Inventory</title>
+  <title>Update Medical Product</title>
   <link rel="shortcut icon" type="image/png" th:href="@{/img/Logo.png}" />
   <link rel="stylesheet" th:href="@{/css/style.css}" />
   <link rel="stylesheet" th:href="@{/css/dashboard/styles.min.css}" />
@@ -33,7 +33,7 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="" style="overflow: hidden;">
           <ul id="sidebarnav">
-            <li class="nav-small-cap active">
+            <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">Home</span>
             </li>
@@ -50,7 +50,7 @@
               <span class="hide-menu">Management</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link active" href="/inventory" aria-expanded="false">
+              <a class="sidebar-link" href="/inventory" aria-expanded="false">
                 <span>
                   <i class="ti ti-article"></i>
                 </span>
@@ -87,50 +87,50 @@
     <!--  Main wrapper -->
     <div class="body-wrapper">
       <div class="container-fluid">
-        <div th:if="${successMessage}">
-          <div class="alert alert-info" style="text-align: center;" th:text="${successMessage}"></div>
-        </div>
-        <div class="card" style="max-width: 100%;">
+        <div class="card">
           <div class="card-body">
-            <div class="mb-3 mb-sm-0">
-              <h5 class="card-title fw-semibold">Inventory</h5>
-              <p class="mb-0">List of medicines available for sales</p>
-            </div>
-            <div class="d-flex align-items-center justify-content-center">
-              <a href="/add-mp"><button id="addMedicineButton" class="btn btn-dark text-light"> Add Medical Product</button></a>
-            </div>
-            <div style="display: flex;justify-content: center;">
-              <table>
-                  <thead>
-                    <tr>
-                      <th>Medicine Name</th>
-                      <th>Manufacturer</th>
-                      <th>Composition</th>
-                      <th>Uses</th>
-                      <th>Quantity Available</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr th:each="medicine : ${medicines}">
-                      <td th:text="${medicine.medicineName}"></td>
-                      <td th:text="${medicine.manufacturer}"></td>
-                      <td th:text="${medicine.composition}"></td>
-                      <td th:text="${medicine.uses}"></td>
-                      <td th:text="${medicine.quantity}"></td>
-                      <td>
-                        <div>
-                          <a th:href="@{/update-mp/{id}(id=${medicine.id})}">UPDATE</a>
-                          <a th:href="@{/{id}/delete(id=${medicine.id})}" onclick="return confirm('Are you sure you want to delete this medicine?')">DELETE</a>
-                        </div>
-                      </td>
-                    </tr>
-                    </tbody>
-              </table>
-            </div>
+                <div class="mb-3 mb-sm-0">
+                <h5 class="card-title fw-semibold">Update Medical Product</h5>
+                <p class="mb-0">Add or remove info for this medicine</p>
+                </div>
           </div>
+            <form th:action="@{/update-mp}" method="post" th:object="${medicalProduct}">
+            <input type="hidden" th:field="*{id}" />
+
+            <label for="medicine_name">Medicine Name</label>
+            <input type="text" name="medicine_name" th:field="*{medicineName}"><br><br>
+
+            <label for="manufacturer">Manufacturer</label>
+            <input type="text" name="manufacturer" th:field="*{manufacturer}"><br><br>
+
+            <label for="composition">Composition</label>
+            <input type="text" name="composition" th:field="*{composition}"><br><br>
+
+            <label for="uses">Uses</label>
+            <textarea name="uses" th:field="*{uses}" rows="5"></textarea><br><br>
+            
+            <label for="sideEffects">Side Effects</label>
+            <input type="text" name="sideEffects" th:field="*{sideEffects}"><br><br>
+        
+            <label for="imageURL">Image URL</label>
+            <input type="text" name="imageURL" th:field="*{imageURL}"><br><br>
+
+            <label for="excellentReview">Excellent Review</label>
+            <input type="text" name="excellentReview" th:field="*{excellentReview}"><br><br>
+
+            <label for="averageReview">Average Review</label>
+            <input type="text" name="averageReview" th:field="*{averageReview}"><br><br>
+
+            <label for="poorReview">Poor Review</label>
+            <input type="text" name="poorReview" th:field="*{poorReview}"><br><br>
+
+            <label for="quantity">Quantity</label>
+            <input type="number" name="quantity" th:field="*{quantity}"><br><br>
+        
+            <button type="submit">Save</button>
+            </form>
+            <br/>
         </div>
-      </div>
     </div>
   </div>
   <script th:src="@{/lib/dashboard/jquery/dist/jquery.min.js}"></script>

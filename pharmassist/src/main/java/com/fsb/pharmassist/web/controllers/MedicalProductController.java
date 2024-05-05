@@ -87,4 +87,22 @@ public class MedicalProductController {
         return "redirect:/inventory";
     }
 
+
+    // Handler method to render the update product page
+    @GetMapping("/update-mp/{id}")
+    public String showUpdateProductForm(@PathVariable("id") Long id, Model model) {
+        MedicalProduct medicalProduct = medicalProductRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid product ID: " + id));
+
+        model.addAttribute("medicalProduct", medicalProduct);
+        return "update-mp";
+    }
+
+    // Handler method to handle form submission and update product information
+    @PostMapping("/update-mp")
+    public String updateProduct(@ModelAttribute MedicalProduct medicalProduct) {
+        medicalProductRepository.save(medicalProduct);
+        return "redirect:/inventory"; // Redirect to the product listing page after updating
+    }
+
 }
