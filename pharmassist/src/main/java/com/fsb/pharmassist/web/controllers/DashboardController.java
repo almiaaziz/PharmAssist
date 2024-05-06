@@ -2,11 +2,15 @@ package com.fsb.pharmassist.web.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.security.core.Authentication;
 
 import com.fsb.pharmassist.business.services.MedicalProductService;
+import com.fsb.pharmassist.business.services.PharmacistService;
 import com.fsb.pharmassist.dao.entities.MedicalProduct;
+import com.fsb.pharmassist.dao.entities.Pharmacist;
 import com.fsb.pharmassist.web.dto.MedicalProductRegistrationDto;
 
 import org.springframework.ui.Model;

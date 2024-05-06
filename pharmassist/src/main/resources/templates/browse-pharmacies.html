@@ -76,11 +76,13 @@
 
 
     <!-- Section de Contenu -->
-    <div class="d-flex align-items-center justify-content-center wow fadeIn" style="margin-bottom: 10px;">
-        <button onclick="getLocation()" class="btn btn-dark">Get Location</button>
-      </div>
+    <div sec:authorize="isAuthenticated()">
+        <div class="d-flex align-items-center justify-content-center wow fadeIn" style="margin-bottom: 10px;">
+            <button onclick="getLocation()" class="btn btn-dark">Get Location</button>
+        </div>
+        <input type="text" class="form-control" id="location" readonly hidden>
     </div>
-    <input type="text" class="form-control" id="location" readonly hidden>
+    </div>
     <div class="container wow fadeIn">
         <div class="row" style="display: flex;justify-content: center;">
             <div id="map"></div>

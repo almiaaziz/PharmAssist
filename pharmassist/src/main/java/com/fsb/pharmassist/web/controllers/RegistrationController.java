@@ -8,7 +8,7 @@ import com.fsb.pharmassist.dao.entities.Client;
 import com.fsb.pharmassist.web.dto.PharmacistRegistrationDto;
 
 @Controller
-public class AuthenticationController {
+public class RegistrationController {
 
     @GetMapping("/register-client")
     public String showCustomRegisterClienttPage(Model model) {
