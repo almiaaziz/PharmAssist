@@ -8,4 +8,6 @@ import com.fsb.pharmassist.dao.entities.Client;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long>{
     Client findByEmail(String email);
+
+    Client findByUsername(String username);
 }

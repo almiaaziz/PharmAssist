@@ -6,4 +6,6 @@ import com.fsb.pharmassist.dao.entities.Pharmacist;
 
 @Repository
 public interface PharmacistRepository extends JpaRepository<Pharmacist, Long> {
+
+    Pharmacist findByUsername(String username);
 }
