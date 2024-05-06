@@ -29,22 +29,20 @@ public class CustomUserDetailsService implements UserDetailsService {
         Client client = clientRepository.findByUsername(username);
         if (client != null) {
             return new org.springframework.security.core.userdetails.User(
-                client.getEmail(),
-                client.getPassword(), // mot de passe non encodé
-                Collections.singletonList(new SimpleGrantedAuthority("ROLE_CLIENT"))
-            );
+                    client.getEmail(),
+                    client.getPassword(), // mot de passe non encodé
+                    Collections.singletonList(new SimpleGrantedAuthority("ROLE_CLIENT")));
         }
 
         // Vérifiez si le pharmacien existe
         Pharmacist pharmacist = pharmacistRepository.findByUsername(username);
         if (pharmacist != null) {
             return new org.springframework.security.core.userdetails.User(
-                pharmacist.getEmail(),
-                pharmacist.getPassword(), // mot de passe non encodé
-                Collections.singletonList(new SimpleGrantedAuthority("ROLE_PHARMACIST"))
-            );
+                    pharmacist.getEmail(),
+                    pharmacist.getPassword(), // mot de passe non encodé
+                    Collections.singletonList(new SimpleGrantedAuthority("ROLE_PHARMACIST")));
         }
 
-        throw new UsernameNotFoundException("Utilisateur non trouvé avec ce nom d'utilisateur : " + username);
+        throw new UsernameNotFoundException("User with the username : " + username + " NOT FOUND");
     }
 }

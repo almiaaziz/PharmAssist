@@ -25,7 +25,8 @@ public class SecurityConfig {
                     "/contact", "/mission", "/register-client", "/register-pharmacist", "/services", "/team", "/index",
                     "/search-medicines/**")
                     .permitAll();
-            authRequest.requestMatchers("/dashboard", "/inventory", "/add-mp", "/update-mp/**").hasRole("PHARMACIST");
+            authRequest.requestMatchers("/dashboard", "/inventory", "/add-mp", "/update-mp/**", "{id}/delete")
+                    .hasRole("PHARMACIST");
             authRequest.requestMatchers("/logout").authenticated();
 
         });
